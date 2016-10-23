@@ -14,6 +14,11 @@ It has yet very limited functionalities yet, so PRs or suggestions are very welc
 - tvOS 9.0+
 - macOS 10.11+
 
+# How to use
+```
+view.makeToast("Hello toast🍞.")
+```
+
 # Install
 #### [Carthage](https://github.com/Carthage/Carthage)
 
