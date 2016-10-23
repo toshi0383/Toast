@@ -92,7 +92,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1FD916CB1DBC18EF00B1ADDE /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = SOURCE_ROOT; };
+		1FD916CB1DBC18EF00B1ADDE /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		1FD916D11DBC1B3600B1ADDE /* DemoMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FD916D31DBC1B3600B1ADDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FD916D51DBC1B3600B1ADDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,15 +106,15 @@
 		1FD916F41DBC31B300B1ADDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FD916F71DBC31B300B1ADDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FD916F91DBC31B300B1ADDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1FD917021DBC36D500B1ADDE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = SOURCE_ROOT; };
+		1FD917021DBC36D500B1ADDE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1FD917081DBC388900B1ADDE /* DemotvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemotvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FD9170A1DBC388900B1ADDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FD9170F1DBC388900B1ADDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FD917111DBC388900B1ADDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FD917131DBC388900B1ADDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1FD9171D1DBC3A5900B1ADDE /* SharedFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctionality.swift; sourceTree = SOURCE_ROOT; };
+		1FD9171D1DBC3A5900B1ADDE /* SharedFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctionality.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Toast.xcodeproj/Configs/Project.xcconfig /* Toast.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Toast.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		__PBXFileRef_Toast.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		"_____Product_Toast" /* Toast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,11 +169,11 @@
 			isa = PBXGroup;
 			children = (
 				1FD916ED1DBC31B300B1ADDE /* AppDelegate.swift */,
-				1FD916EF1DBC31B300B1ADDE /* ViewController.swift */,
-				1FD916F11DBC31B300B1ADDE /* Main.storyboard */,
 				1FD916F41DBC31B300B1ADDE /* Assets.xcassets */,
-				1FD916F61DBC31B300B1ADDE /* LaunchScreen.storyboard */,
 				1FD916F91DBC31B300B1ADDE /* Info.plist */,
+				1FD916F61DBC31B300B1ADDE /* LaunchScreen.storyboard */,
+				1FD916F11DBC31B300B1ADDE /* Main.storyboard */,
+				1FD916EF1DBC31B300B1ADDE /* ViewController.swift */,
 			);
 			path = DemoiOS;
 			sourceTree = "<group>";
@@ -182,9 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				1FD9170A1DBC388900B1ADDE /* AppDelegate.swift */,
-				1FD9170E1DBC388900B1ADDE /* Main.storyboard */,
 				1FD917111DBC388900B1ADDE /* Assets.xcassets */,
 				1FD917131DBC388900B1ADDE /* Info.plist */,
+				1FD9170E1DBC388900B1ADDE /* Main.storyboard */,
 			);
 			path = DemotvOS;
 			sourceTree = "<group>";
@@ -192,13 +192,13 @@
 		"___RootGroup_" = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Package.swift /* Package.swift */,
 				"_____Configs_" /* Configs */,
-				"_____Sources_" /* Sources */,
 				1FD916D21DBC1B3600B1ADDE /* DemoMac */,
 				1FD916EC1DBC31B300B1ADDE /* DemoiOS */,
 				1FD917091DBC388900B1ADDE /* DemotvOS */,
 				"____Products_" /* Products */,
+				"_____Sources_" /* Sources */,
+				__PBXFileRef_Package.swift /* Package.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,9 +216,9 @@
 		"_____Configs_" /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Toast.xcodeproj/Configs/Project.xcconfig /* Toast.xcodeproj/Configs/Project.xcconfig */,
+				__PBXFileRef_Toast.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */,
 			);
-			name = Configs;
+			path = Configs;
 			sourceTree = "<group>";
 		};
 		"_____Sources_" /* Sources */ = {
@@ -226,7 +226,7 @@
 			children = (
 				"_______Group_Toast" /* Toast */,
 			);
-			name = Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		"_______Group_Toast" /* Toast */ = {
@@ -236,8 +236,7 @@
 				1FD9171D1DBC3A5900B1ADDE /* SharedFunctionality.swift */,
 				1FD916CB1DBC18EF00B1ADDE /* Toast.swift */,
 			);
-			name = Toast;
-			path = .;
+			path = Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,6 +462,7 @@
 				1FD916F21DBC31B300B1ADDE /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		1FD916F61DBC31B300B1ADDE /* LaunchScreen.storyboard */ = {
@@ -471,6 +471,7 @@
 				1FD916F71DBC31B300B1ADDE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		1FD9170E1DBC388900B1ADDE /* Main.storyboard */ = {
@@ -479,6 +480,7 @@
 				1FD9170F1DBC388900B1ADDE /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -857,14 +859,14 @@
 		};
 		"_____Release_" /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_Toast.xcodeproj/Configs/Project.xcconfig /* Toast.xcodeproj/Configs/Project.xcconfig */;
+			baseConfigurationReference = __PBXFileRef_Toast.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
 		"_______Debug_" /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_Toast.xcodeproj/Configs/Project.xcconfig /* Toast.xcodeproj/Configs/Project.xcconfig */;
+			baseConfigurationReference = __PBXFileRef_Toast.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
@@ -888,6 +890,7 @@
 				1FD916FB1DBC31B300B1ADDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		1FD917141DBC388900B1ADDE /* Build configuration list for PBXNativeTarget "DemotvOS" */ = {
 			isa = XCConfigurationList;
@@ -896,6 +899,7 @@
 				1FD917161DBC388900B1ADDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		"___RootConfs_" /* Build configuration list for PBXProject "Toast" */ = {
 			isa = XCConfigurationList;
