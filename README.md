@@ -15,7 +15,11 @@ It has yet very limited functionalities yet, so PRs or suggestions are very welc
 - macOS 10.11+
 
 # Install
-## Carthage
-```
-github "toshi0383/Toast"
-```
+#### [Carthage](https://github.com/Carthage/Carthage)
+
+- Add `github "toshi0383/Toast"` to your Cartfile.
+
+#### [CocoaPods](https://github.com/cocoapods/cocoapods)
+
+- Add `pod 'Toast', '~> 3.0'` to your Podfile.
+- Run `pod install`.
