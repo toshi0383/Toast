@@ -9,14 +9,14 @@
 import Foundation
 #if os(OSX)
 import AppKit
-public typealias View = NSView
-public typealias Color = NSColor
-public typealias Font = NSFont
+typealias View = NSView
+typealias Color = NSColor
+typealias Font = NSFont
 #elseif os(iOS) || os(tvOS)
 import UIKit
-public typealias View = UIView
-public typealias Color = UIColor
-public typealias Font = UIFont
+typealias View = UIView
+typealias Color = UIColor
+typealias Font = UIFont
 #endif
 
 extension CGRect {
