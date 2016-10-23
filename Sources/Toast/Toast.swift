@@ -24,25 +24,29 @@ public class Style {
     }
     #if os(iOS)
     public var fontSize: CGFloat = 16
-    public var font: Font
+    public var font: UIFont
     public var horizontalMargin: CGFloat = 5
     public var verticalMargin: CGFloat = 5
     public var cornerRadius: CGFloat = 6
+    public var backgroundColor: UIColor = .black
+    public var foregroundColor: UIColor = .white
     #elseif os(tvOS)
     public var fontSize: CGFloat = 42
-    public var font: Font
+    public var font: UIFont
     public var horizontalMargin: CGFloat = 15
     public var verticalMargin: CGFloat = 10
     public var cornerRadius: CGFloat = 6
+    public var backgroundColor: UIColor = .black
+    public var foregroundColor: UIColor = .white
     #elseif os(OSX)
     public var fontSize: CGFloat = 16
-    public var font: Font
+    public var font: NSFont
     public var horizontalMargin: CGFloat = 10
     public var verticalMargin: CGFloat = 5
     public var cornerRadius: CGFloat = 6
+    public var backgroundColor: NSColor = .black
+    public var foregroundColor: NSColor = .white
     #endif
-    public var backgroundColor: Color = .black
-    public var foregroundColor: Color = .white
     public var fadeoutDuration: CGFloat = 0.25
     public var fadeoutDelay: CGFloat = 1.0
     var labelOriginWithMargin: CGPoint {
