@@ -21,5 +21,5 @@ It has yet very limited functionalities yet, so PRs or suggestions are very welc
 
 #### [CocoaPods](https://github.com/cocoapods/cocoapods)
 
-- Add `pod 'Toast', '~> 3.0'` to your Podfile.
+- Add `pod 'TSToast'` to your Podfile.
 - Run `pod install`.
