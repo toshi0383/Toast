@@ -15,4 +15,14 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         view.makeToast("Login Failed.")
     }
+
+    var toggle = true
+    @IBAction func button(_ sender: AnyObject) {
+        if toggle {
+            view.makeToastActivity()
+        } else {
+            view.hideToastActivity()
+        }
+        toggle = !toggle
+    }
 }

@@ -11,7 +11,17 @@ import Toast
 import AppKit
 
 class ViewController: NSViewController {
-    @IBAction func button(_ sender: AnyObject) {
+    var toggle = true
+    override func viewDidAppear() {
+        super.viewDidAppear()
         view.makeToast("Login Failed.")
+    }
+    @IBAction func button(_ sender: AnyObject) {
+        if toggle {
+            view.makeToastActivity()
+        } else {
+            view.hideToastActivity()
+        }
+        toggle = !toggle
     }
 }

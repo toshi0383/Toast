@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectiveC
 #if os(OSX)
 import AppKit
 #elseif os(iOS) || os(tvOS)
@@ -17,41 +18,92 @@ enum Position {
     case center
 }
 
-public class Style {
-    public static var shared = Style()
-    init() {
-        self.font = Font.systemFont(ofSize: fontSize)
-    }
-    #if os(iOS)
-    public var fontSize: CGFloat = 16
-    public var font: UIFont
-    public var horizontalMargin: CGFloat = 5
-    public var verticalMargin: CGFloat = 5
-    public var cornerRadius: CGFloat = 6
-    public var backgroundColor: UIColor = .black
-    public var foregroundColor: UIColor = .white
-    #elseif os(tvOS)
-    public var fontSize: CGFloat = 42
-    public var font: UIFont
-    public var horizontalMargin: CGFloat = 15
-    public var verticalMargin: CGFloat = 10
-    public var cornerRadius: CGFloat = 6
-    public var backgroundColor: UIColor = .black
-    public var foregroundColor: UIColor = .white
-    #elseif os(OSX)
-    public var fontSize: CGFloat = 16
-    public var font: NSFont
-    public var horizontalMargin: CGFloat = 10
-    public var verticalMargin: CGFloat = 5
-    public var cornerRadius: CGFloat = 6
-    public var backgroundColor: NSColor = .black
-    public var foregroundColor: NSColor = .white
-    #endif
-    public var fadeoutDuration: CGFloat = 0.25
-    public var fadeoutDelay: CGFloat = 1.0
-    var labelOriginWithMargin: CGPoint {
+public protocol Style {
+    var fontSize: CGFloat {get}
+    var horizontalMargin: CGFloat {get}
+    var verticalMargin: CGFloat {get}
+    var cornerRadius: CGFloat {get}
+#if os(iOS) || os(tvOS)
+    var font: UIFont {get}
+    var backgroundColor: UIColor {get}
+    var foregroundColor: UIColor {get}
+#elseif os(OSX)
+    var font: NSFont {get}
+    var backgroundColor: NSColor {get}
+    var foregroundColor: NSColor {get}
+#endif
+    var fadeInOutDuration: CGFloat {get}
+    var fadeInOutDelay: CGFloat {get}
+    var labelOriginWithMargin: CGPoint {get}
+    var activitySize: CGSize {get}
+}
+
+extension Style {
+    public var labelOriginWithMargin: CGPoint {
         return CGPoint(x: horizontalMargin, y: verticalMargin)
     }
+    #if os(iOS)
+    public var fontSize: CGFloat {return 16}
+    public var font: UIFont {
+        return Font.systemFont(ofSize: fontSize)
+    }
+    public var horizontalMargin: CGFloat {return 5}
+    public var verticalMargin: CGFloat {return 5}
+    public var cornerRadius: CGFloat {return 6}
+    public var backgroundColor: UIColor {return .black}
+    public var foregroundColor: UIColor {return .white}
+    public var activitySize: CGSize {return CGSize(width: 100, height: 100)}
+    #elseif os(tvOS)
+    public var fontSize: CGFloat {return 42}
+    public var font: UIFont {
+        return Font.systemFont(ofSize: fontSize)
+    }
+    public var horizontalMargin: CGFloat {return 15}
+    public var verticalMargin: CGFloat {return 10}
+    public var cornerRadius: CGFloat {return 6}
+    public var backgroundColor: UIColor {return .black}
+    public var foregroundColor: UIColor {return .white}
+    public var activitySize: CGSize {return CGSize(width: 180, height: 180)}
+    #elseif os(OSX)
+    public var fontSize: CGFloat {return 16}
+    public var font: NSFont {
+        return NSFont.systemFont(ofSize: fontSize)
+    }
+    public var horizontalMargin: CGFloat {return 10}
+    public var verticalMargin: CGFloat {return 5}
+    public var cornerRadius: CGFloat {return 6}
+    public var backgroundColor: NSColor {return .black}
+    public var foregroundColor: NSColor {return .white}
+    public var activitySize: CGSize {return CGSize(width: 100, height: 100)}
+    #endif
+    public var fadeInOutDuration: CGFloat {return 1.0}
+    public var fadeInOutDelay: CGFloat {return 1.0}
+}
+
+public struct DefaultStyle: Style {
+    public static let shared = DefaultStyle()
+}
+public struct IndicatorStyle: Style {
+    public static let shared = IndicatorStyle()
+    public var fadeInOutDuration: CGFloat = 0.1
+    public var fadeInOutDelay: CGFloat = 0.0
+    #if os(iOS) || os(tvOS)
+    public var backgroundColor: UIColor
+    #elseif os(OSX)
+    public var backgroundColor: NSColor
+    #endif
+    init() {
+        self.backgroundColor = Color.black.withAlphaComponent(0.8)
+    }
+    #if os(tvOS)
+    public var cornerRadius: CGFloat {return 18}
+    #endif
+
+}
+
+private struct ToastKeys {
+    static var ActiveToast  = "TSToastActiveToastKey"
+    static var ActivityView = "TSToastActivityViewKey"
 }
 
 class ToastView: View {
@@ -60,7 +112,7 @@ class ToastView: View {
     private let style: Style
     init(message: String) {
         self.message = message
-        self.style = Style.shared
+        self.style = DefaultStyle()
         self.labelSize = message.size(with: style.fontSize)
         let size = CGSize(
             width: labelSize.width + style.horizontalMargin*2,
@@ -68,6 +120,9 @@ class ToastView: View {
         )
         let rect = CGRect(origin: .zero, size: size)
         super.init(frame: rect)
+        #if os(OSX)
+            wantsLayer = true
+        #endif
     }
     required init?(coder aDecoder: NSCoder) { fatalError() }
 
@@ -81,7 +136,6 @@ class ToastView: View {
     #elseif os(OSX)
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
-        wantsLayer = true
         if superview != nil {
             configure()
         }
@@ -90,7 +144,6 @@ class ToastView: View {
     
     private func configure() {
         frame = superview!.bounds
-
         let rect = CGRect(origin: style.labelOriginWithMargin, size: labelSize)
         let sizeWithMargin = CGSize(
             width: rect.width + style.horizontalMargin*2,
@@ -122,10 +175,97 @@ class ToastView: View {
     }
 }
 
+class ActivityView: View {
+    let _indicator = _Indicator.create()
+    var style: Style
+    init() {
+        self.style = IndicatorStyle()
+        let rect = CGRect(origin: .zero, size: .zero)
+        super.init(frame: rect)
+        #if os(OSX)
+            wantsLayer = true
+        #endif
+    }
+    required init?(coder aDecoder: NSCoder) { fatalError() }
+
+    #if os(iOS) || os(tvOS)
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        if superview != nil {
+            configure()
+        }
+    }
+    #elseif os(OSX)
+    override func viewDidMoveToSuperview() {
+        super.viewDidMoveToSuperview()
+        if superview != nil {
+            configure()
+        }
+    }
+    #endif
+
+    private func configure() {
+        frame = superview!.bounds
+        let size = style.activitySize
+        let origin = CGPoint(x: frame.width/2 - size.width/2, y: frame.height/2 - size.height/2)
+
+        #if os(iOS) || os(tvOS)
+            frame = CGRect(origin: origin, size: size)
+            _indicator.frame = CGRect(origin: .zero, size: size)
+            _layer.backgroundColor = style.backgroundColor.cgColor
+            _layer.cornerRadius = style.cornerRadius
+            _layer.opacity = 0.8
+        #elseif os(OSX)
+            _indicator.frame = CGRect(origin: origin, size: size)
+            _layer.backgroundColor = Color.gray.withAlphaComponent(0.6).cgColor
+        #endif
+        addSubview(_indicator)
+        _indicator._startAnimating()
+    }
+}
+
+#if os(iOS) || os(tvOS)
+typealias _Indicator = UIActivityIndicatorView
+#elseif os(OSX)
+typealias _Indicator = NSProgressIndicator
+#endif
+
+extension _Indicator {
+    static func create() -> _Indicator {
+        #if os(iOS) || os(tvOS)
+            return _Indicator(activityIndicatorStyle: .whiteLarge)
+        #elseif os(OSX)
+            return _Indicator()
+        #endif
+    }
+    func _startAnimating() {
+        #if os(iOS) || os(tvOS)
+            startAnimating()
+        #elseif os(OSX)
+            startAnimation(nil)
+        #endif
+    }
+}
+
 extension View {
+    // MARK: Toast Message
     public func makeToast(_ message: String) {
         let toast = ToastView(message: message)
         self.addSubview(toast)
-        hideAnimation(view: toast, style: Style.shared)
+        hideAnimation(view: toast, style: DefaultStyle.shared)
+    }
+
+    // MARK: Indicator
+    public func makeToastActivity() {
+        let activityView = ActivityView()
+        objc_setAssociatedObject(self, &ToastKeys.ActivityView, activityView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        activityView._layer.opacity = 0.0
+        self.addSubview(activityView)
+        showAnimation(view: activityView, style: IndicatorStyle.shared)
+    }
+    public func hideToastActivity() {
+        if let activityView = objc_getAssociatedObject(self, &ToastKeys.ActivityView) as? View {
+            hideAnimation(view: activityView, style: IndicatorStyle.shared)
+        }
     }
 }
