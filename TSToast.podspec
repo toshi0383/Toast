@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TSToast"
-  s.version          = "0.1.0"
+  s.version          = "0.2.0"
   s.summary          = "Toast Popup for iOS,tvOS,macOS(OSX)"
   s.description      = <<-DESC
       Yet another Toast library🍞
