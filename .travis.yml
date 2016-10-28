@@ -2,7 +2,7 @@ language: objective-c
 osx_image: xcode8
 
 env:
-  - "DESTINATION='platform=watchOS Simulator,name=Apple Watch - 38mm' ACTION=build"
+  - "DESTINATION='platform=iOS Simulator,name=iPhone 6' ACTION=build"
   - "DESTINATION='platform=tvOS Simulator,name=Apple TV 1080p' ACTION=build"
   - "DESTINATION='platform=OS X' ACTION=build"
 
