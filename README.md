@@ -17,6 +17,8 @@ It has yet very limited functionalities yet, so PRs or suggestions are very welc
 # How to use
 ```
 view.makeToast("Hello toast🍞.")
+view.makeToastActivity() // show indicator
+view.hideToastActivity() // hide indicator
 ```
 
 # Install
