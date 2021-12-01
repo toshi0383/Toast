@@ -8,9 +8,9 @@
 
 import Foundation
 #if os(OSX)
-import AppKit
+    import AppKit
 #elseif os(iOS) || os(tvOS)
-import UIKit
+    import UIKit
 #endif
 
 fileprivate class HideAnimationDelegate: NSObject, CAAnimationDelegate {
@@ -18,12 +18,15 @@ fileprivate class HideAnimationDelegate: NSObject, CAAnimationDelegate {
     fileprivate init(view: View) {
         self.view = view
     }
+
     fileprivate static func delegate(forView view: View) -> CAAnimationDelegate {
         return HideAnimationDelegate(view: view)
     }
+
     fileprivate func animationDidStart(_ anim: CAAnimation) {
         view?._layer.opacity = 0.0
     }
+
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         view?.removeFromSuperview()
         view = nil
@@ -35,19 +38,22 @@ fileprivate class ShowAnimationDelegate: NSObject, CAAnimationDelegate {
     fileprivate init(view: View) {
         self.view = view
     }
+
     fileprivate static func delegate(forView view: View) -> CAAnimationDelegate {
         return ShowAnimationDelegate(view: view)
     }
+
     fileprivate func animationDidStart(_ anim: CAAnimation) {
         view?._layer.opacity = 1.0
     }
+
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
     }
 }
 
 func showAnimation(view: View, style: Style) {
     let anim = CABasicAnimation(keyPath: "opacity")
-    let timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+    let timing = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
     anim.timingFunction = timing
     let currentLayerTime = view._layer.convertTime(CACurrentMediaTime(), from: nil)
     anim.beginTime = currentLayerTime + CFTimeInterval(style.fadeInOutDelay)
@@ -62,7 +68,7 @@ func showAnimation(view: View, style: Style) {
 
 func hideAnimation(view: View, style: Style) {
     let anim = CABasicAnimation(keyPath: "opacity")
-    let timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+    let timing = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
     anim.timingFunction = timing
     let currentLayerTime = view._layer.convertTime(CACurrentMediaTime(), from: nil)
     anim.beginTime = currentLayerTime + CFTimeInterval(style.fadeInOutDelay)

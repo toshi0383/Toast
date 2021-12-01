@@ -8,15 +8,15 @@
 
 import Foundation
 #if os(OSX)
-import AppKit
-typealias View = NSView
-typealias Color = NSColor
-typealias Font = NSFont
+    import AppKit
+    typealias View = NSView
+    typealias Color = NSColor
+    typealias Font = NSFont
 #elseif os(iOS) || os(tvOS)
-import UIKit
-typealias View = UIView
-typealias Color = UIColor
-typealias Font = UIFont
+    import UIKit
+    typealias View = UIView
+    typealias Color = UIColor
+    typealias Font = UIFont
 #endif
 
 extension CGRect {
@@ -24,6 +24,7 @@ extension CGRect {
         let parentSize = layer.frame.size
         return CGPoint(x: parentSize.width / 2, y: parentSize.height / 2)
     }
+
     static func center(of parent: View) -> CGPoint {
         let parentSize = parent.frame.size
         return CGPoint(x: parentSize.width / 2, y: parentSize.height / 2)
@@ -31,14 +32,11 @@ extension CGRect {
 }
 
 extension NSString {
-    func toast_size(with attributes: [String: Any]?) -> CGSize {
-        #if os(OSX)
-            return self.size(withAttributes: attributes)
-        #elseif os(iOS) || os(tvOS)
-            return self.size(attributes: attributes)
-        #endif
+    func toast_size(with attributes: [NSAttributedString.Key: Any]?) -> CGSize {
+        return size(withAttributes: attributes)
     }
 }
+
 extension View {
     var _layer: CALayer {
         #if os(OSX)
@@ -51,7 +49,7 @@ extension View {
 
 extension String {
     func size(with fontSize: CGFloat) -> CGSize {
-        let attr: [String: Any] = [NSFontAttributeName: Font.systemFont(ofSize: fontSize)]
+        let attr: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: Font.systemFont(ofSize: fontSize)]
         let size = NSString(string: self).toast_size(with: attr)
         return size
     }
